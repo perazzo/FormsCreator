@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="iRentModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="ContactFName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactLName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactPhone" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyAdd" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CompanyAdd2" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CompanyCity" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CompanyState" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CompanyZip" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="CompanyStartDate" Type="date" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="LeadSourceCompanyID" Type="int" Nullable="false" />
+          <Property Name="MarketingSource" Type="int" Nullable="false" />
+          <Property Name="ChargeByACH" Type="int" />
+          <Property Name="CompanyPayFee" Type="int" />
+          <Property Name="AllPropertiesTenantPortal" Type="int" />
+          <Property Name="SendToCollection" Type="int" />
+          <Property Name="AllowEvictionTenantPayOnline" Type="int" />
+          <Property Name="TurnOffOnlinePaymentsNotification" Type="int" />
+          <Property Name="ShowAllPropertiesTenants" Type="int" />
+          <Property Name="LateLicensePayment" Type="int" />
+          <Property Name="AmountDue" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="forms_printable">
+          <Key>
+            <PropertyRef Name="Forms_PrintableID" />
+          </Key>
+          <Property Name="Forms_PrintableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Form_Name" Type="varchar" MaxLength="30" />
+          <Property Name="Form" Type="longtext" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="FormCreatorID" Type="int" />
+        </EntityType>
+        <EntityType Name="formscreator">
+          <Key>
+            <PropertyRef Name="FormsCreatorID" />
+          </Key>
+          <Property Name="FormsCreatorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="properties">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="PropertyAddress1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PropertyAddress2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PropertyCity" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PropertyState" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PropertyZip" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PropertyEmail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PropertyPhone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Threshold" Type="int" Nullable="false" />
+          <Property Name="LateFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LateFeeApplied" Type="int" Nullable="false" />
+          <Property Name="EvictionThreshold" Type="int" Nullable="false" />
+          <Property Name="SMSThreshold" Type="int" Nullable="false" />
+          <Property Name="BankFee" Type="int" Nullable="false" />
+          <Property Name="DailyLateFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PetFine" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DailyPetFine" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Gas" Type="int" Nullable="false" />
+          <Property Name="Electricity" Type="int" Nullable="false" />
+          <Property Name="Water" Type="int" Nullable="false" />
+          <Property Name="Trash" Type="int" Nullable="false" />
+          <Property Name="TV" Type="int" Nullable="false" />
+          <Property Name="Internet" Type="int" Nullable="false" />
+          <Property Name="LaborRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="EvictionFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SecurityDeposit" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NRSecurityDeposit" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MaxLateFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MinBalance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ApplicationFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="AdminFee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Active" Type="int" />
+          <Property Name="PropertyEIN" Type="varchar" MaxLength="15" />
+          <Property Name="PropertyURL" Type="varchar" MaxLength="50" />
+          <Property Name="PropertyWebsite" Type="varchar" MaxLength="250" />
+          <Property Name="PropertyLongDescription" Type="text" />
+          <Property Name="PropertyOfficeHoursID" Type="int" />
+          <Property Name="AllowTenantsPayLessThanAmountDue" Type="int" />
+          <Property Name="CheckID" Type="int" />
+          <Property Name="AlertUpcomingLeaseExpiration" Type="int" />
+          <Property Name="AbsorbApplicationFee" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserFName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserLName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="CellPhoneProviderID" Type="int" Nullable="false" />
+          <Property Name="UserPW" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserStartDate" Type="date" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="SecurityLevelID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="int" Nullable="false" />
+          <Property Name="SignatureName" Type="varchar" MaxLength="255" />
+          <Property Name="SignatureFont" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="iRentModelStoreContainer">
+          <EntitySet Name="company" EntityType="Self.company" Schema="myirentc_rent" store:Type="Tables" />
+          <EntitySet Name="forms_printable" EntityType="Self.forms_printable" Schema="myirentc_rent" store:Type="Tables" />
+          <EntitySet Name="formscreator" EntityType="Self.formscreator" Schema="myirentc_rent" store:Type="Tables" />
+          <EntitySet Name="properties" EntityType="Self.properties" Schema="myirentc_rent" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="myirentc_rent" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="iRentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactFName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactLName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyAdd" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyAdd2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyZip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyStartDate" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="LeadSourceCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="MarketingSource" Type="Int32" Nullable="false" />
+          <Property Name="ChargeByACH" Type="Int32" />
+          <Property Name="CompanyPayFee" Type="Int32" />
+          <Property Name="AllPropertiesTenantPortal" Type="Int32" />
+          <Property Name="SendToCollection" Type="Int32" />
+          <Property Name="AllowEvictionTenantPayOnline" Type="Int32" />
+          <Property Name="TurnOffOnlinePaymentsNotification" Type="Int32" />
+          <Property Name="ShowAllPropertiesTenants" Type="Int32" />
+          <Property Name="LateLicensePayment" Type="Int32" />
+          <Property Name="AmountDue" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="forms_printable">
+          <Key>
+            <PropertyRef Name="Forms_PrintableID" />
+          </Key>
+          <Property Name="Forms_PrintableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Form_Name" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Form" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="FormCreatorID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="formscreator">
+          <Key>
+            <PropertyRef Name="FormsCreatorID" />
+          </Key>
+          <Property Name="FormsCreatorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="property">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyAddress1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyState" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyZip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Threshold" Type="Int32" Nullable="false" />
+          <Property Name="LateFee" Type="Decimal" Nullable="false" />
+          <Property Name="LateFeeApplied" Type="Int32" Nullable="false" />
+          <Property Name="EvictionThreshold" Type="Int32" Nullable="false" />
+          <Property Name="SMSThreshold" Type="Int32" Nullable="false" />
+          <Property Name="BankFee" Type="Int32" Nullable="false" />
+          <Property Name="DailyLateFee" Type="Decimal" Nullable="false" />
+          <Property Name="PetFine" Type="Decimal" Nullable="false" />
+          <Property Name="DailyPetFine" Type="Decimal" Nullable="false" />
+          <Property Name="Gas" Type="Int32" Nullable="false" />
+          <Property Name="Electricity" Type="Int32" Nullable="false" />
+          <Property Name="Water" Type="Int32" Nullable="false" />
+          <Property Name="Trash" Type="Int32" Nullable="false" />
+          <Property Name="TV" Type="Int32" Nullable="false" />
+          <Property Name="Internet" Type="Int32" Nullable="false" />
+          <Property Name="LaborRate" Type="Decimal" Nullable="false" />
+          <Property Name="EvictionFee" Type="Decimal" Nullable="false" />
+          <Property Name="SecurityDeposit" Type="Decimal" Nullable="false" />
+          <Property Name="NRSecurityDeposit" Type="Decimal" Nullable="false" />
+          <Property Name="MaxLateFee" Type="Decimal" Nullable="false" />
+          <Property Name="MinBalance" Type="Decimal" Nullable="false" />
+          <Property Name="ApplicationFee" Type="Decimal" Nullable="false" />
+          <Property Name="AdminFee" Type="Decimal" Nullable="false" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="PropertyEIN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyWebsite" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyLongDescription" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyOfficeHoursID" Type="Int32" />
+          <Property Name="AllowTenantsPayLessThanAmountDue" Type="Int32" />
+          <Property Name="CheckID" Type="Int32" />
+          <Property Name="AlertUpcomingLeaseExpiration" Type="Int32" />
+          <Property Name="AbsorbApplicationFee" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="MyiRentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="forms_printable" EntityType="Self.forms_printable" />
+          <EntitySet Name="formscreators" EntityType="Self.formscreator" />
+          <EntitySet Name="properties" EntityType="Self.property" />
+          <EntitySet Name="users" EntityType="iRentModel.user" />
+        </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserFName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserLName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPhone" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhoneProviderID" Type="Int32" Nullable="false" />
+          <Property Name="UserPW" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserStartDate" Type="DateTime" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="SecurityLevelID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Int32" Nullable="false" />
+          <Property Name="SignatureName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SignatureFont" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="iRentModelStoreContainer" CdmEntityContainer="MyiRentEntities">
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="iRentModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ContactFName" ColumnName="ContactFName" />
+                <ScalarProperty Name="ContactLName" ColumnName="ContactLName" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="CompanyAdd" ColumnName="CompanyAdd" />
+                <ScalarProperty Name="CompanyAdd2" ColumnName="CompanyAdd2" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyState" ColumnName="CompanyState" />
+                <ScalarProperty Name="CompanyZip" ColumnName="CompanyZip" />
+                <ScalarProperty Name="CompanyStartDate" ColumnName="CompanyStartDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LeadSourceCompanyID" ColumnName="LeadSourceCompanyID" />
+                <ScalarProperty Name="MarketingSource" ColumnName="MarketingSource" />
+                <ScalarProperty Name="ChargeByACH" ColumnName="ChargeByACH" />
+                <ScalarProperty Name="CompanyPayFee" ColumnName="CompanyPayFee" />
+                <ScalarProperty Name="AllPropertiesTenantPortal" ColumnName="AllPropertiesTenantPortal" />
+                <ScalarProperty Name="SendToCollection" ColumnName="SendToCollection" />
+                <ScalarProperty Name="AllowEvictionTenantPayOnline" ColumnName="AllowEvictionTenantPayOnline" />
+                <ScalarProperty Name="TurnOffOnlinePaymentsNotification" ColumnName="TurnOffOnlinePaymentsNotification" />
+                <ScalarProperty Name="ShowAllPropertiesTenants" ColumnName="ShowAllPropertiesTenants" />
+                <ScalarProperty Name="LateLicensePayment" ColumnName="LateLicensePayment" />
+                <ScalarProperty Name="AmountDue" ColumnName="AmountDue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forms_printable">
+            <EntityTypeMapping TypeName="iRentModel.forms_printable">
+              <MappingFragment StoreEntitySet="forms_printable">
+                <ScalarProperty Name="Forms_PrintableID" ColumnName="Forms_PrintableID" />
+                <ScalarProperty Name="Form_Name" ColumnName="Form_Name" />
+                <ScalarProperty Name="Form" ColumnName="Form" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="FormCreatorID" ColumnName="FormCreatorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formscreators">
+            <EntityTypeMapping TypeName="iRentModel.formscreator">
+              <MappingFragment StoreEntitySet="formscreator">
+                <ScalarProperty Name="FormsCreatorID" ColumnName="FormsCreatorID" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="properties">
+            <EntityTypeMapping TypeName="iRentModel.property">
+              <MappingFragment StoreEntitySet="properties">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="PropertyAddress1" ColumnName="PropertyAddress1" />
+                <ScalarProperty Name="PropertyAddress2" ColumnName="PropertyAddress2" />
+                <ScalarProperty Name="PropertyCity" ColumnName="PropertyCity" />
+                <ScalarProperty Name="PropertyState" ColumnName="PropertyState" />
+                <ScalarProperty Name="PropertyZip" ColumnName="PropertyZip" />
+                <ScalarProperty Name="PropertyEmail" ColumnName="PropertyEmail" />
+                <ScalarProperty Name="PropertyPhone" ColumnName="PropertyPhone" />
+                <ScalarProperty Name="Threshold" ColumnName="Threshold" />
+                <ScalarProperty Name="LateFee" ColumnName="LateFee" />
+                <ScalarProperty Name="LateFeeApplied" ColumnName="LateFeeApplied" />
+                <ScalarProperty Name="EvictionThreshold" ColumnName="EvictionThreshold" />
+                <ScalarProperty Name="SMSThreshold" ColumnName="SMSThreshold" />
+                <ScalarProperty Name="BankFee" ColumnName="BankFee" />
+                <ScalarProperty Name="DailyLateFee" ColumnName="DailyLateFee" />
+                <ScalarProperty Name="PetFine" ColumnName="PetFine" />
+                <ScalarProperty Name="DailyPetFine" ColumnName="DailyPetFine" />
+                <ScalarProperty Name="Gas" ColumnName="Gas" />
+                <ScalarProperty Name="Electricity" ColumnName="Electricity" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Trash" ColumnName="Trash" />
+                <ScalarProperty Name="TV" ColumnName="TV" />
+                <ScalarProperty Name="Internet" ColumnName="Internet" />
+                <ScalarProperty Name="LaborRate" ColumnName="LaborRate" />
+                <ScalarProperty Name="EvictionFee" ColumnName="EvictionFee" />
+                <ScalarProperty Name="SecurityDeposit" ColumnName="SecurityDeposit" />
+                <ScalarProperty Name="NRSecurityDeposit" ColumnName="NRSecurityDeposit" />
+                <ScalarProperty Name="MaxLateFee" ColumnName="MaxLateFee" />
+                <ScalarProperty Name="MinBalance" ColumnName="MinBalance" />
+                <ScalarProperty Name="ApplicationFee" ColumnName="ApplicationFee" />
+                <ScalarProperty Name="AdminFee" ColumnName="AdminFee" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PropertyEIN" ColumnName="PropertyEIN" />
+                <ScalarProperty Name="PropertyURL" ColumnName="PropertyURL" />
+                <ScalarProperty Name="PropertyWebsite" ColumnName="PropertyWebsite" />
+                <ScalarProperty Name="PropertyLongDescription" ColumnName="PropertyLongDescription" />
+                <ScalarProperty Name="PropertyOfficeHoursID" ColumnName="PropertyOfficeHoursID" />
+                <ScalarProperty Name="AllowTenantsPayLessThanAmountDue" ColumnName="AllowTenantsPayLessThanAmountDue" />
+                <ScalarProperty Name="CheckID" ColumnName="CheckID" />
+                <ScalarProperty Name="AlertUpcomingLeaseExpiration" ColumnName="AlertUpcomingLeaseExpiration" />
+                <ScalarProperty Name="AbsorbApplicationFee" ColumnName="AbsorbApplicationFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="iRentModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="SignatureFont" ColumnName="SignatureFont" />
+                <ScalarProperty Name="SignatureName" ColumnName="SignatureName" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="SecurityLevelID" ColumnName="SecurityLevelID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="UserStartDate" ColumnName="UserStartDate" />
+                <ScalarProperty Name="UserPW" ColumnName="UserPW" />
+                <ScalarProperty Name="CellPhoneProviderID" ColumnName="CellPhoneProviderID" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserLName" ColumnName="UserLName" />
+                <ScalarProperty Name="UserFName" ColumnName="UserFName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

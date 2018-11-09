@@ -1,0 +1,101 @@
+﻿@model FormsCreator.Models.ModelView.ListFormsCreator
+
+@{
+    Layout = "";
+}
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/JS/formsCreator.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Loading.css" rel="stylesheet" />
+
+    <title>Forms Creator</title>
+</head>
+<body>
+    <form action="@Url.Action("SaveFormPrintable", "FormsCreator")" method="post">
+        <br/><br />
+        <div class="form-group col-sm-3">
+            @Html.DropDownListFor(m => m.SelectedFormId, Model.Forms, "Select a Form", new { @class = "form-control",
+           @onchange = "changeForm(this.value)"
+       })
+        </div>
+        <div class="form-group col-sm-2">
+            <button id="btnCreateForm" type="button" class="btn btn-primary" onclick="openModal();">Create a New Form</button>
+        </div>
+        <div class="form-group col-sm-3">
+            <button id="btnDeleteForm" type="button" class="btn btn-danger" onclick="deleteForm();" style="display: none;">Delete Form</button>
+        </div>
+        <br/><br/>
+        <div class="form-group col-sm-12">
+            <textarea class="form-control" id="mytextarea" name="mytextarea"></textarea>
+        </div>
+        <input type="hidden" id="propertyID" name="propertyID" value='@ViewData["PropertyID"]' />
+        <input type="hidden" id="userID" name="userID" value='@ViewData["UserID"]' />
+        <div class="form-group col-sm-12">
+            <button id="btnSaveForms" align="center" type="button" class="btn btn-primary" onclick="saveFormData();">Save Form</button>
+            <button id="btnLoadDefault" align="center" type="button" class="btn btn-success" onclick="LoadDefault();" style="display: none;">Load Default Form</button>
+            @if (Model.SaveAllProperties)
+            {
+                <input type="checkbox" id="saveAllProperties" name="saveAllProperties" />
+                <label for="saveAllProperties">Save for all your properties</label>
+            }
+        </div>
+    </form>
+    <div class="modal fade" id="createForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
+                    <h4 class="modal-title"><strong>Enter a name for your form:</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="formNameTemp" name="formNameTemp" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="button" onclick="saveCreateForm();">Save</button>
+                    <button data-dismiss="modal" class="btn btn-primary" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="defaultMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
+                    <h4 class="modal-title"><strong id="modalDefaultTitle"></strong></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info fade in">
+                        <p id="modalDefaultMessage"></p>
+                    </div>
+                    <input type="hidden" id="action" name="action" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="button" onclick="modalDefaultAction();">Confirm</button>
+                    <button data-dismiss="modal" class="btn btn-primary" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="LoadingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <br />
+                        <div id="loading"></div>
+                        <p id="loadingModalText"></p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
